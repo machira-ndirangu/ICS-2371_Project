@@ -1,0 +1,21 @@
+void caesarCipher(char* text, int key, int decrypt) {
+    int i = 0;
+    int shift = decrypt ? -key : key; // Determine the shift based on encryption or decryption
+    int cipherValue;
+    char cipher;
+
+    while (text[i] != '\0' && strlen(text) - 1 > i) {
+        if (text[i] >= 'a' && text[i] <= 'z') {
+            cipherValue = ((int)text[i] - 'a' + shift + 26) % 26 + 'a';
+        } else if (text[i] >= 'A' && text[i] <= 'Z') {
+            cipherValue = ((int)text[i] - 'A' + shift + 26) % 26 + 'A';
+        } else {
+            // Leave non-alphabetic characters unchanged
+            cipherValue = text[i];
+        }
+        cipher = (char)(cipherValue);
+        printf("%c", cipher);
+        i++;
+    }
+    printf("\n");
+}
